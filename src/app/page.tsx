@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import MapMarker from "./component/mapmarker/mapmarker";
-import GoogleMap from "google-maps-react-markers";
+import GoogleMap, { MapContextProps } from 'google-maps-react-markers'
 import { useEffect, useRef, useState } from "react";
 
 const { REACT_APP_MAPS_KEY } = process.env;
@@ -80,10 +80,10 @@ export default function Home() {
    * @param {Object} map - reference to the map instance
    * @param {Object} maps - reference to the maps library
    */
-  const onGoogleApiLoaded = ({ map, maps }) => {
-    mapRef.current = map;
-    setMapReady(true);
-  };
+  const onGoogleApiLoaded = ({ map, maps }: { map: MapContextProps['map']; maps: MapContextProps['maps'] }) => {
+		mapRef.current = map
+		setMapReady(true)
+	}
 
   // maps from list of cities and creates MapMarkers as children of GoogleMap.
   return (
