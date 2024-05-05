@@ -65,6 +65,7 @@ export default function MapMarker({
 }) {
   const [condition, setCondition] = useState<string>("");
   const [temperature, setTemperatur] = useState<string>("");
+  const [updatedTime, setUpdatedTime] = useState<string>("");
   useEffect(() => {
     /**
    * @description This function is to fetch the current weather information from the EC Database. 
@@ -79,7 +80,16 @@ export default function MapMarker({
         const xmlText = await response.text();
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-
+        const tempDoc = xmlDoc.getElementsByTagName("dateTime")[1];
+        console.log(tempDoc.querySelector("textSummary")?.textContent);
+        if (
+            tempDoc.querySelector("textSummary")?.textContent !== null &&
+            tempDoc.querySelector("textSummary")?.textContent !== undefined
+          ) {
+            setUpdatedTime(
+                tempDoc.querySelector("textSummary")?.textContent!
+            );
+          }
         if (
           xmlDoc.querySelector("currentConditions > temperature")
             ?.textContent !== null &&
@@ -127,12 +137,15 @@ export default function MapMarker({
         // display: "inline-flex",
         // textAlign: "center",
         alignItems: "center",
-        width: "15vh",
+        width: 200,
       }}
     >
       <p style={{ fontSize: 20, textAlign: "center" }}>{name}</p>
       <p style={{ fontSize: 18, textAlign: "center" }}>
         {temperature}°C {condition}
+      </p>
+      <p style={{ fontSize: 10, textAlign: "center" }}>
+        {updatedTime}
       </p>
     </div>
   );
