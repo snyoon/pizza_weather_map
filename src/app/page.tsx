@@ -95,7 +95,6 @@ export default function Home() {
         defaultZoom={defaultProps.zoom}
         mapMinHeight="100vh"
         onGoogleApiLoaded={onGoogleApiLoaded}
-        onChange={(map) => console.log("Map moved", map)}
       >
         {cities.map((city, index) => (
           <MapMarker

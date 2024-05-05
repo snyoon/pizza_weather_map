@@ -136,8 +136,12 @@ export default function MapMarker({
         padding: "15px 10px",
         // display: "inline-flex",
         // textAlign: "center",
-        alignItems: "center",
+        // alignItems: "center",
         width: 200,
+        alignSelf: 'center',
+        justifySelf: 'center',
+        transform: `translate(-100px, -80px)` 
+
       }}
     >
       <p style={{ fontSize: 20, textAlign: "center" }}>{name}</p>
