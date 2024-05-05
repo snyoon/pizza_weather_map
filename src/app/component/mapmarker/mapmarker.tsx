@@ -87,7 +87,7 @@ export default function MapMarker({
             ?.textContent !== undefined
         ) {
           setTemperatur(
-            xmlDoc.querySelector("currentConditions > temperature")?.textContent
+            xmlDoc.querySelector("currentConditions > temperature")?.textContent!
           );
         }
         if (
@@ -97,7 +97,7 @@ export default function MapMarker({
             undefined
         ) {
           setCondition(
-            xmlDoc.querySelector("currentConditions > condition")?.textContent
+            xmlDoc.querySelector("currentConditions > condition")?.textContent!
           );
         }
       } catch (error) {
