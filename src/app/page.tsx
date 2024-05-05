@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import MapMarker from "./component/mapmarker/mapmarker";
 import GoogleMap from "google-maps-react-markers";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const { REACT_APP_MAPS_KEY } = process.env;
 interface ICity {
@@ -13,7 +13,7 @@ interface ICity {
   lon: number;
   stId: string;
 }
-
+// Hard coded list of cities with lat, lon information as well as Station ID from EC.
 let cities: Array<ICity> = [
   {
     name: "Dease Lake",
@@ -85,10 +85,10 @@ export default function Home() {
     setMapReady(true);
   };
 
+  // maps from list of cities and creates MapMarkers as children of GoogleMap.
   return (
     <main>
-      <div>
-      </div>
+      <div></div>
       <GoogleMap
         apiKey={key}
         defaultCenter={defaultProps.center}
